@@ -9,11 +9,9 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     public function store():RedirectResponse {
-        dd(request()->all());
-
         Question::query()->create(
             request()->validate([
-                "question"=> ["required"],
+                "question"=> ["required", "min:10"],
             ])
         );    
 
