@@ -5,6 +5,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 
+Route::get('/', function() {
+    if (app()->isLocal()) {
+        auth()->loginUsingId(1);
+        return redirect('/dashboard');
+    }
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
 });
