@@ -9,9 +9,7 @@ class LikeController extends Controller
 {
     public function __invoke(Question $question)
     {
-        auth()
-            ->user()
-                ->like($question);
+        user()->like($question);
 
         return back();
     }
