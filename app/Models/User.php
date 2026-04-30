@@ -61,4 +61,15 @@ class User extends Authenticatable
             ]
         );
     }
+
+    public function unlike(Question $question)
+    {
+        $this->votes()->updateOrCreate(
+            ['question_id' => $question->id],
+            [
+                'unlike' => 1,
+                'like'   => 0,
+            ]
+        );
+    }
 }
